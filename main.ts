@@ -19,6 +19,10 @@ try {
   process.exit(1);
 }
 
+// Why this check exists: the judge only ever sees a single short line, so
+// anything shorter than one character or longer than 140 is not a valid
+// entry at all. Catch it here and stop loudly instead of handing the
+// grader a file it would have to throw away.
 // Gate: the sealed scorer only accepts 1-140 characters of non-whitespace UTF-8 text; refuse the rest here.
 const length = [...content].length;
 if (length < 1 || length > 140 || content.trim().length === 0) {
